@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake Match Puzzle - Fun Online Matching Game | Play Now</title>
+    <meta name="description" content="Play Cake Match Puzzle online for free! A delicious and addictive matching game with sweet treats. Match cakes to score points and complete levels.">
+    <link rel="canonical" href="https://cakematchpuzzle.online/">
+    <meta name="keywords" content="Cake Match Puzzle, cake game, match three, puzzle game, online game, free game, sweet treats game">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        apple: {
+                            blue: '#147EFB',
+                            green: '#53D769',
+                            red: '#FC3D39',
+                            yellow: '#FECB2E',
+                            orange: '#FD9426',
+                            pink: '#FF2D55',
+                            purple: '#AF52DE',
+                            darkblue: '#0A84FF',
+                            background: '#F5F5F7',
+                            text: '#1D1D1F',
+                            subtletext: '#6E6E73'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['SF Pro Display', 'Helvetica', 'Arial', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom styles */
+        .game-container {
+            aspect-ratio: 16/9;
+            max-height: 80vh;
+        }
+        
+        @media (max-width: 768px) {
+            .game-container {
+                aspect-ratio: 4/3;
+                height: 70vh;
+            }
+        }
+        
+        .shadow-apple {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+        
+        /* Animation for cake icon */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "VideoGame",
+        "name": "Cake Match Puzzle",
+        "description": "A delicious and addictive matching game with sweet treats. Match cakes to score points and complete challenging levels.",
+        "genre": ["Puzzle", "Casual", "Match Three"],
+        "url": "https://cakematchpuzzle.online",
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Browser Game",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+        }
+    }
+    </script>
+</head>
+<body class="bg-apple-background text-apple-text font-sans min-h-screen">
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <span class="text-apple-pink text-3xl float-animation inline-block">🍰</span>
+                <span class="font-bold text-xl md:text-2xl">Cake Match Puzzle</span>
+            </div>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#game" class="hover:text-apple-blue transition-colors">Play</a></li>
+                    <li><a href="#instructions" class="hover:text-apple-blue transition-colors">How to Play</a></li>
+                    <li><a href="#features" class="hover:text-apple-blue transition-colors">Features</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-6">
+        <section class="text-center mb-12 mt-8">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Cake Match Puzzle</h1>
+            <p class="text-xl text-apple-subtletext max-w-3xl mx-auto">Match delicious cakes in this sweet puzzle adventure – satisfy your craving for fun!</p>
+            
+            <div class="mt-8 flex justify-center">
+                <a href="#game" class="bg-apple-blue text-white px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-all transform hover:scale-105">Play Now</a>
+            </div>
+        </section>
+
+        <section id="game" class="bg-white rounded-2xl shadow-apple p-4 mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-center">Play Cake Match Puzzle</h2>
+            <div class="game-container w-full mx-auto rounded-xl overflow-hidden border-2 border-apple-pink">
+                <iframe 
+                    src="https://sites.google.com/site/unblockedgames77/cake-match-puzzle" 
+                    frameborder="0" 
+                    allowfullscreen
+                    class="w-full h-full"
+                    title="Cake Match Puzzle Game">
+                    Your browser does not support iframes. Please update your browser to play this game.
+                </iframe>
+            </div>
+            <div class="text-center mt-4 text-apple-subtletext">
+                <p>Having trouble? Try refreshing the page or using a different browser.</p>
+            </div>
+        </section>
+
+        <section id="instructions" class="grid md:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white rounded-2xl shadow-apple p-6">
+                <h2 class="text-2xl font-bold mb-4 text-apple-blue">How to Play</h2>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="text-apple-green mr-2">✓</span>
+                        <span>Swap adjacent cakes to create matches of 3 or more identical treats</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-apple-green mr-2">✓</span>
+                        <span>Match more cakes to create special power-ups and combos</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-apple-green mr-2">✓</span>
+                        <span>Complete level objectives before running out of moves</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-apple-green mr-2">✓</span>
+                        <span>Plan your moves strategically to maximize your score</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="bg-white rounded-2xl shadow-apple p-6">
+                <h2 class="text-2xl font-bold mb-4 text-apple-orange">Game Controls</h2>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <span class="text-apple-orange mr-2">•</span>
+                        <span><strong>Mouse/Touch:</strong> Click or tap and drag to swap cakes</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-apple-orange mr-2">•</span>
+                        <span><strong>Menu Button:</strong> Access settings and restart options</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-apple-orange mr-2">•</span>
+                        <span><strong>Sound Button:</strong> Toggle game sounds on/off</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-apple-orange mr-2">•</span>
+                        <span><strong>Hint:</strong> If stuck, wait for the game to suggest a possible move</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="features" class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-center">Game Features</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-2xl shadow-apple p-6 border-t-4 border-apple-purple">
+                    <h3 class="text-xl font-semibold mb-3">Delicious Graphics</h3>
+                    <p>Feast your eyes on mouthwatering cake designs and vibrant colorful gameplay that bring the sweet treat world to life.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-apple p-6 border-t-4 border-apple-blue">
+                    <h3 class="text-xl font-semibold mb-3">Progressive Difficulty</h3>
+                    <p>Start with simple levels and progress to more challenging puzzles as you improve your cake-matching skills.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-apple p-6 border-t-4 border-apple-green">
+                    <h3 class="text-xl font-semibold mb-3">Special Power-ups</h3>
+                    <p>Create special matches to unlock powerful boosters like cake explosions, row clearers, and color blasters.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-apple p-6 border-t-4 border-apple-red">
+                    <h3 class="text-xl font-semibold mb-3">Multiple Game Modes</h3>
+                    <p>Enjoy different challenges including timed levels, limited moves scenarios, and special objective-based puzzles.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-apple p-6 border-t-4 border-apple-yellow">
+                    <h3 class="text-xl font-semibold mb-3">Regular Updates</h3>
+                    <p>New levels, cakes, and features added regularly to keep the gameplay fresh and exciting for returning players.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl shadow-apple p-6 border-t-4 border-apple-pink">
+                    <h3 class="text-xl font-semibold mb-3">Free to Play</h3>
+                    <p>Enjoy the complete Cake Match Puzzle experience without any cost - just dive in and start matching!</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="bg-gradient-to-r from-apple-pink to-apple-purple rounded-2xl text-white p-8 mb-12 text-center">
+            <h2 class="text-2xl font-bold mb-4">Ready for a Sweet Challenge?</h2>
+            <p class="mb-6 max-w-2xl mx-auto">Test your puzzle-solving skills with Cake Match Puzzle. Match cakes, create combos, and satisfy your craving for fun!</p>
+            <a href="#game" class="bg-white text-apple-pink px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-all transform hover:scale-105 inline-block">Play Now</a>
+        </section>
+        
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-center">About Cake Match Puzzle</h2>
+            <div class="bg-white rounded-2xl shadow-apple p-6">
+                <p class="mb-4">Cake Match Puzzle is an engaging online match-3 puzzle game that combines colorful cake graphics with challenging gameplay. As players progress through levels, they'll encounter different cake varieties and special power-ups that add depth to the game mechanics.</p>
+                
+                <p class="mb-4">The objective is simple: match identical cakes in rows or columns of three or more to clear them from the board. Each level presents unique challenges, such as collecting specific cake types, reaching score thresholds, or clearing obstacles within a limited number of moves.</p>
+                
+                <p class="mb-4">Strategic thinking is key to success in Cake Match Puzzle. Planning several moves ahead and understanding how to create and use special power-ups will help players achieve higher scores and three-star ratings on each level.</p>
+                
+                <p>Whether you have a few minutes to spare or want to enjoy extended gameplay sessions, Cake Match Puzzle offers the perfect balance of accessibility and depth to satisfy casual and dedicated puzzle fans alike.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-apple-text text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-3">Cake Match Puzzle</h3>
+                    <p class="text-gray-300">A delicious match-3 puzzle game with sweet challenges and tasty rewards.</p>
+                </div>
+                
+                <div class="md:text-right">
+                    <h3 class="text-xl font-bold mb-3">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#game" class="text-gray-300 hover:text-white transition-colors">Play Game</a></li>
+                        <li><a href="#instructions" class="text-gray-300 hover:text-white transition-colors">How to Play</a></li>
+                        <li><a href="#features" class="text-gray-300 hover:text-white transition-colors">Features</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 Cake Match Puzzle. All rights reserved.</p>
+                <p class="mt-2 text-sm">This website is optimized for both desktop and mobile devices.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
