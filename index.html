@@ -9,69 +9,418 @@
     <meta name="keywords" content="Cake Match Puzzle, cake game, match three, puzzle game, online game, free game, sweet treats game">
     
     <!-- Favicon -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍰</text></svg>">
     
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        apple: {
-                            blue: '#147EFB',
-                            green: '#53D769',
-                            red: '#FC3D39',
-                            yellow: '#FECB2E',
-                            orange: '#FD9426',
-                            pink: '#FF2D55',
-                            purple: '#AF52DE',
-                            darkblue: '#0A84FF',
-                            background: '#F5F5F7',
-                            text: '#1D1D1F',
-                            subtletext: '#6E6E73'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['SF Pro Display', 'Helvetica', 'Arial', 'sans-serif']
-                    }
-                }
+    <!-- 预编译的样式，避免使用Tailwind CDN -->
+    <style>
+        /* 基础重置 */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* 颜色变量 */
+        :root {
+            --apple-blue: #147EFB;
+            --apple-green: #53D769;
+            --apple-red: #FC3D39;
+            --apple-yellow: #FECB2E;
+            --apple-orange: #FD9426;
+            --apple-pink: #FF2D55;
+            --apple-purple: #AF52DE;
+            --apple-darkblue: #0A84FF;
+            --apple-background: #F5F5F7;
+            --apple-text: #1D1D1F;
+            --apple-subtletext: #6E6E73;
+        }
+        
+        /* 基础样式 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--apple-background);
+            color: var(--apple-text);
+            line-height: 1.5;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--apple-blue);
+            transition: color 0.2s;
+        }
+        
+        a:hover {
+            color: var(--apple-darkblue);
+        }
+        
+        ul {
+            list-style-position: inside;
+        }
+        
+        /* 容器 */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部 */
+        header {
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .logo-icon {
+            margin-right: 0.5rem;
+            animation: float 3s ease-in-out infinite;
+            display: inline-block;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        /* 主要内容 */
+        main {
+            padding: 2rem 0;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+        }
+        
+        .hero {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 3rem;
             }
         }
-    </script>
-    
-    <style>
-        /* Custom styles */
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .subtitle {
+            color: var(--apple-subtletext);
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        /* 按钮 */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .btn-primary {
+            background-color: var(--apple-blue);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--apple-darkblue);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: white;
+            color: var(--apple-pink);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255,255,255,0.9);
+        }
+        
+        .btn-large {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+        }
+        
+        /* 游戏区域 */
+        .card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
         .game-container {
+            border: 2px solid var(--apple-pink);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: linear-gradient(to right, rgba(255,45,85,0.1), rgba(175,82,222,0.1));
             aspect-ratio: 16/9;
-            max-height: 80vh;
         }
         
         @media (max-width: 768px) {
             .game-container {
                 aspect-ratio: 4/3;
-                height: 70vh;
             }
         }
         
-        .shadow-apple {
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        .game-icon {
+            width: 6rem;
+            height: 6rem;
+            margin-bottom: 1.5rem;
+            animation: float 3s ease-in-out infinite;
         }
         
-        /* Animation for cake icon */
+        .game-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.75rem;
+            text-align: center;
+        }
+        
+        .game-description {
+            color: var(--apple-subtletext);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            max-width: 32rem;
+        }
+        
+        .small-text {
+            font-size: 0.875rem;
+            color: var(--apple-subtletext);
+            margin-top: 1rem;
+        }
+        
+        /* 网格 */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .grid-cols-1 {
+            grid-template-columns: 1fr;
+        }
+        
+        @media (min-width: 768px) {
+            .md-grid-cols-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .md-grid-cols-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* 特性卡片 */
+        .feature-card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+        
+        .purple-border::before {
+            background-color: var(--apple-purple);
+        }
+        
+        .blue-border::before {
+            background-color: var(--apple-blue);
+        }
+        
+        .green-border::before {
+            background-color: var(--apple-green);
+        }
+        
+        .red-border::before {
+            background-color: var(--apple-red);
+        }
+        
+        .yellow-border::before {
+            background-color: var(--apple-yellow);
+        }
+        
+        .pink-border::before {
+            background-color: var(--apple-pink);
+        }
+        
+        /* 渐变部分 */
+        .gradient-section {
+            background: linear-gradient(to right, var(--apple-pink), var(--apple-purple));
+            color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        /* 列表项 */
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+        
+        .list-icon {
+            margin-right: 0.5rem;
+            color: var(--apple-green);
+        }
+        
+        .orange-icon {
+            color: var(--apple-orange);
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: var(--apple-text);
+            color: white;
+            padding: 2rem 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .footer-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-text {
+            color: #bbb;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #bbb;
+            transition: color 0.2s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-divider {
+            border-top: 1px solid #444;
+            margin: 1.5rem 0;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            color: #888;
+        }
+        
+        /* 动画 */
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
         
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
+        .text-center {
+            text-align: center;
+        }
+        
+        .text-right {
+            text-align: right;
+        }
+        
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+        
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .mt-2 {
+            margin-top: 0.5rem;
+        }
+        
+        .flex-center {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .flex-items-center {
+            display: flex;
+            align-items: center;
+        }
+        
+        .space-x-2 > * + * {
+            margin-left: 0.5rem;
         }
     </style>
     
-    <!-- Structured Data for SEO -->
+    <!-- 结构化数据用于SEO -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -92,141 +441,137 @@
     }
     </script>
 </head>
-<body class="bg-apple-background text-apple-text font-sans min-h-screen">
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <span class="text-apple-pink text-3xl float-animation inline-block">🍰</span>
-                <span class="font-bold text-xl md:text-2xl">Cake Match Puzzle</span>
-            </div>
+<body>
+    <header>
+        <div class="container">
             <nav>
-                <ul class="flex space-x-6">
-                    <li><a href="#game" class="hover:text-apple-blue transition-colors">Play</a></li>
-                    <li><a href="#instructions" class="hover:text-apple-blue transition-colors">How to Play</a></li>
-                    <li><a href="#features" class="hover:text-apple-blue transition-colors">Features</a></li>
+                <div class="logo">
+                    <span class="logo-icon">🍰</span>
+                    <span>Cake Match Puzzle</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#game">Play</a></li>
+                    <li><a href="#instructions">How to Play</a></li>
+                    <li><a href="#features">Features</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-6">
-        <section class="text-center mb-12 mt-8">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Cake Match Puzzle</h1>
-            <p class="text-xl text-apple-subtletext max-w-3xl mx-auto">Match delicious cakes in this sweet puzzle adventure – satisfy your craving for fun!</p>
+    <main class="container">
+        <section class="hero">
+            <h1>Cake Match Puzzle</h1>
+            <p class="subtitle">Match delicious cakes in this sweet puzzle adventure – satisfy your craving for fun!</p>
             
-            <div class="mt-8 flex justify-center">
-                <a href="#game" class="bg-apple-blue text-white px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-all transform hover:scale-105">Play Now</a>
+            <div class="flex-center">
+                <a href="#game" class="btn btn-primary">Play Now</a>
             </div>
         </section>
 
-        <section id="game" class="bg-white rounded-2xl shadow-apple p-4 mb-12">
-            <h2 class="text-2xl font-bold mb-4 text-center">Play Cake Match Puzzle</h2>
-            <div class="game-container w-full mx-auto rounded-xl overflow-hidden border-2 border-apple-pink">
-                <iframe 
-                    src="https://sites.google.com/site/unblockedgames77/cake-match-puzzle" 
-                    frameborder="0" 
-                    allowfullscreen
-                    class="w-full h-full"
-                    title="Cake Match Puzzle Game">
-                    Your browser does not support iframes. Please update your browser to play this game.
-                </iframe>
-            </div>
-            <div class="text-center mt-4 text-apple-subtletext">
-                <p>Having trouble? Try refreshing the page or using a different browser.</p>
+        <section id="game" class="card">
+            <h2 class="text-center mb-4">Play Cake Match Puzzle</h2>
+            <div class="game-container">
+                <img src="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍰</text></svg>" alt="Cake Match Puzzle" class="game-icon">
+                <h3 class="game-title">Ready to match sweet treats?</h3>
+                <p class="game-description">Match delicious cakes in this addictive puzzle adventure. Create combos and earn special power-ups!</p>
+                <a href="https://sites.google.com/site/unblockedgames77/cake-match-puzzle" target="_blank" class="btn btn-primary btn-large flex-items-center">
+                    <span style="margin-right: 0.5rem;">🎮</span> Play Cake Match Puzzle
+                </a>
+                <p class="small-text">Game will open in a new window</p>
             </div>
         </section>
 
-        <section id="instructions" class="grid md:grid-cols-2 gap-8 mb-12">
-            <div class="bg-white rounded-2xl shadow-apple p-6">
-                <h2 class="text-2xl font-bold mb-4 text-apple-blue">How to Play</h2>
-                <ul class="space-y-3">
-                    <li class="flex items-start">
-                        <span class="text-apple-green mr-2">✓</span>
+        <section id="instructions" class="grid grid-cols-1 md-grid-cols-2">
+            <div class="card">
+                <h2 style="color: var(--apple-blue);">How to Play</h2>
+                <div>
+                    <div class="list-item">
+                        <span class="list-icon">✓</span>
                         <span>Swap adjacent cakes to create matches of 3 or more identical treats</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-apple-green mr-2">✓</span>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-icon">✓</span>
                         <span>Match more cakes to create special power-ups and combos</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-apple-green mr-2">✓</span>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-icon">✓</span>
                         <span>Complete level objectives before running out of moves</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-apple-green mr-2">✓</span>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-icon">✓</span>
                         <span>Plan your moves strategically to maximize your score</span>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
             
-            <div class="bg-white rounded-2xl shadow-apple p-6">
-                <h2 class="text-2xl font-bold mb-4 text-apple-orange">Game Controls</h2>
-                <ul class="space-y-3">
-                    <li class="flex items-start">
-                        <span class="text-apple-orange mr-2">•</span>
+            <div class="card">
+                <h2 style="color: var(--apple-orange);">Game Controls</h2>
+                <div>
+                    <div class="list-item">
+                        <span class="list-icon orange-icon">•</span>
                         <span><strong>Mouse/Touch:</strong> Click or tap and drag to swap cakes</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-apple-orange mr-2">•</span>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-icon orange-icon">•</span>
                         <span><strong>Menu Button:</strong> Access settings and restart options</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-apple-orange mr-2">•</span>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-icon orange-icon">•</span>
                         <span><strong>Sound Button:</strong> Toggle game sounds on/off</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="text-apple-orange mr-2">•</span>
+                    </div>
+                    <div class="list-item">
+                        <span class="list-icon orange-icon">•</span>
                         <span><strong>Hint:</strong> If stuck, wait for the game to suggest a possible move</span>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <section id="features" class="mb-12">
-            <h2 class="text-2xl font-bold mb-6 text-center">Game Features</h2>
+        <section id="features">
+            <h2 class="text-center mb-6">Game Features</h2>
             
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-white rounded-2xl shadow-apple p-6 border-t-4 border-apple-purple">
-                    <h3 class="text-xl font-semibold mb-3">Delicious Graphics</h3>
+            <div class="grid grid-cols-1 md-grid-cols-3">
+                <div class="feature-card purple-border">
+                    <h3>Delicious Graphics</h3>
                     <p>Feast your eyes on mouthwatering cake designs and vibrant colorful gameplay that bring the sweet treat world to life.</p>
                 </div>
                 
-                <div class="bg-white rounded-2xl shadow-apple p-6 border-t-4 border-apple-blue">
-                    <h3 class="text-xl font-semibold mb-3">Progressive Difficulty</h3>
+                <div class="feature-card blue-border">
+                    <h3>Progressive Difficulty</h3>
                     <p>Start with simple levels and progress to more challenging puzzles as you improve your cake-matching skills.</p>
                 </div>
                 
-                <div class="bg-white rounded-2xl shadow-apple p-6 border-t-4 border-apple-green">
-                    <h3 class="text-xl font-semibold mb-3">Special Power-ups</h3>
+                <div class="feature-card green-border">
+                    <h3>Special Power-ups</h3>
                     <p>Create special matches to unlock powerful boosters like cake explosions, row clearers, and color blasters.</p>
                 </div>
                 
-                <div class="bg-white rounded-2xl shadow-apple p-6 border-t-4 border-apple-red">
-                    <h3 class="text-xl font-semibold mb-3">Multiple Game Modes</h3>
+                <div class="feature-card red-border">
+                    <h3>Multiple Game Modes</h3>
                     <p>Enjoy different challenges including timed levels, limited moves scenarios, and special objective-based puzzles.</p>
                 </div>
                 
-                <div class="bg-white rounded-2xl shadow-apple p-6 border-t-4 border-apple-yellow">
-                    <h3 class="text-xl font-semibold mb-3">Regular Updates</h3>
+                <div class="feature-card yellow-border">
+                    <h3>Regular Updates</h3>
                     <p>New levels, cakes, and features added regularly to keep the gameplay fresh and exciting for returning players.</p>
                 </div>
                 
-                <div class="bg-white rounded-2xl shadow-apple p-6 border-t-4 border-apple-pink">
-                    <h3 class="text-xl font-semibold mb-3">Free to Play</h3>
+                <div class="feature-card pink-border">
+                    <h3>Free to Play</h3>
                     <p>Enjoy the complete Cake Match Puzzle experience without any cost - just dive in and start matching!</p>
                 </div>
             </div>
         </section>
         
-        <section class="bg-gradient-to-r from-apple-pink to-apple-purple rounded-2xl text-white p-8 mb-12 text-center">
-            <h2 class="text-2xl font-bold mb-4">Ready for a Sweet Challenge?</h2>
-            <p class="mb-6 max-w-2xl mx-auto">Test your puzzle-solving skills with Cake Match Puzzle. Match cakes, create combos, and satisfy your craving for fun!</p>
-            <a href="#game" class="bg-white text-apple-pink px-8 py-3 rounded-full font-medium hover:bg-opacity-90 transition-all transform hover:scale-105 inline-block">Play Now</a>
+        <section class="gradient-section">
+            <h2 class="mb-4">Ready for a Sweet Challenge?</h2>
+            <p class="mb-6" style="max-width: 600px; margin-left: auto; margin-right: auto;">Test your puzzle-solving skills with Cake Match Puzzle. Match cakes, create combos, and satisfy your craving for fun!</p>
+            <a href="https://sites.google.com/site/unblockedgames77/cake-match-puzzle" target="_blank" class="btn btn-secondary">Play Now</a>
         </section>
         
-        <section class="mb-12">
-            <h2 class="text-2xl font-bold mb-6 text-center">About Cake Match Puzzle</h2>
-            <div class="bg-white rounded-2xl shadow-apple p-6">
+        <section>
+            <h2 class="text-center mb-6">About Cake Match Puzzle</h2>
+            <div class="card">
                 <p class="mb-4">Cake Match Puzzle is an engaging online match-3 puzzle game that combines colorful cake graphics with challenging gameplay. As players progress through levels, they'll encounter different cake varieties and special power-ups that add depth to the game mechanics.</p>
                 
                 <p class="mb-4">The objective is simple: match identical cakes in rows or columns of three or more to clear them from the board. Each level presents unique challenges, such as collecting specific cake types, reaching score thresholds, or clearing obstacles within a limited number of moves.</p>
@@ -238,27 +583,29 @@
         </section>
     </main>
 
-    <footer class="bg-apple-text text-white py-8">
-        <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-8">
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
                 <div>
-                    <h3 class="text-xl font-bold mb-3">Cake Match Puzzle</h3>
-                    <p class="text-gray-300">A delicious match-3 puzzle game with sweet challenges and tasty rewards.</p>
+                    <h3 class="footer-title">Cake Match Puzzle</h3>
+                    <p class="footer-text">A delicious match-3 puzzle game with sweet challenges and tasty rewards.</p>
                 </div>
                 
-                <div class="md:text-right">
-                    <h3 class="text-xl font-bold mb-3">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#game" class="text-gray-300 hover:text-white transition-colors">Play Game</a></li>
-                        <li><a href="#instructions" class="text-gray-300 hover:text-white transition-colors">How to Play</a></li>
-                        <li><a href="#features" class="text-gray-300 hover:text-white transition-colors">Features</a></li>
+                <div class="text-right">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#game">Play Game</a></li>
+                        <li><a href="#instructions">How to Play</a></li>
+                        <li><a href="#features">Features</a></li>
                     </ul>
                 </div>
             </div>
             
-            <div class="border-t border-gray-700 mt-6 pt-6 text-center text-gray-400">
+            <div class="footer-divider"></div>
+            
+            <div class="footer-bottom">
                 <p>&copy; 2025 Cake Match Puzzle. All rights reserved.</p>
-                <p class="mt-2 text-sm">This website is optimized for both desktop and mobile devices.</p>
+                <p class="mt-2">This website is optimized for both desktop and mobile devices.</p>
             </div>
         </div>
     </footer>
